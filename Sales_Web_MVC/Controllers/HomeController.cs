@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Sales_Web_MVC.Models;
+using Sales_Web_MVC.Models.ViewModels;
 using System.Diagnostics;
 
 namespace Sales_Web_MVC.Controllers
