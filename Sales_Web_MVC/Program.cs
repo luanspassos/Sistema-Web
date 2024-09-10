@@ -9,7 +9,10 @@ namespace Sales_Web_MVC
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<Sales_Web_MVCContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("Sales_Web_MVCContext") ?? throw new InvalidOperationException("Connection string 'Sales_Web_MVCContext' not found.")));
+                options.UseMySql(
+                     builder.Configuration.GetConnectionString("Sales_Web_MVCContext"),
+                     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("Sales_Web_MVCContext")),
+                     mysqlOptions => mysqlOptions.MigrationsAssembly("Sales_Web_MVC")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
