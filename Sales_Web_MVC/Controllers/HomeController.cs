@@ -13,6 +13,14 @@ namespace Sales_Web_MVC.Controllers
             _logger = logger;
         }
 
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Salles Web MVC App from C# Course";
+            ViewData["Professor"] = "Luan Passos";
+
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -30,3 +38,4 @@ namespace Sales_Web_MVC.Controllers
         }
     }
 }
+
