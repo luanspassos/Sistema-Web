@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Sales_Web_MVC.Data;
+using Sales_Web_MVC.Services;
 namespace Sales_Web_MVC
 {
     public class Program
@@ -14,6 +15,8 @@ namespace Sales_Web_MVC
                      ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("Sales_Web_MVCContext")),
                      mysqlOptions => mysqlOptions.MigrationsAssembly("Sales_Web_MVC")));
 
+            builder.Services.AddScoped<SeedingService>();
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
@@ -26,6 +29,11 @@ namespace Sales_Web_MVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            
+            var seedingService = app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingService>();
+            seedingService.Seed();
+            
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
