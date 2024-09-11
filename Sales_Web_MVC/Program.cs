@@ -16,6 +16,8 @@ namespace Sales_Web_MVC
                      mysqlOptions => mysqlOptions.MigrationsAssembly("Sales_Web_MVC")));
 
             builder.Services.AddScoped<SeedingService>();
+            builder.Services.AddScoped<SellerService>();
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
