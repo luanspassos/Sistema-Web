@@ -30,10 +30,9 @@ namespace Sales_Web_MVC.Services
 
         public void Remove(int id)
         {
-            //Seller seller = _context.Seller.FirstOrDefault(s => s.Id == id);
-            // _context.Remove(seller);
-            var obj = _context.Seller.Find(id);
-            _context.Remove(obj);
+            var seller = _context.Seller.Find(id);  //Seller seller = _context.Seller.FirstOrDefault(s => s.Id == id);
+
+            _context.Remove(seller);
             _context.SaveChanges();
         }
     }
