@@ -2,6 +2,7 @@
 using Sales_Web_MVC.Models;
 using Sales_Web_MVC.Models.ViewModels;
 using Sales_Web_MVC.Services;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sales_Web_MVC.Controllers
 {
@@ -24,7 +25,7 @@ namespace Sales_Web_MVC.Controllers
         public IActionResult Create()
         {
             var departments = _departmentService.FindAllDepartments();
-            var viewModel = new SellerFormViewModel { Departments = departments};
+            var viewModel = new SellerFormViewModel { Departments = departments };
             return View(viewModel);
         }
 
@@ -55,6 +56,21 @@ namespace Sales_Web_MVC.Controllers
         {
             _sellerService.Remove(id);
             return RedirectToAction(nameof(Index));
+        }
+
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var seller = _sellerService.FindById(id.Value);
+            if (seller == null)
+            {
+                return NotFound();
+            }
+            return View(seller);
         }
     }
 }
