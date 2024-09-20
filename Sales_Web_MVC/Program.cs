@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Sales_Web_MVC.Data;
 using Sales_Web_MVC.Services;
+using System.Globalization;
 namespace Sales_Web_MVC
 {
     public class Program
@@ -36,7 +38,14 @@ namespace Sales_Web_MVC
             var seedingService = app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingService>();
             seedingService.Seed();
             
-
+            var enUS = new CultureInfo("en-US");
+            var LocalizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                SupportedCultures = new List<CultureInfo> { enUS },
+                SupportedUICultures = new List<CultureInfo> { enUS }
+            };
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
