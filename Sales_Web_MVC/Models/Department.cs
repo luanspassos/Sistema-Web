@@ -19,10 +19,10 @@
             int soma = 0;
             foreach (Seller s in Sellers)
             {
-                if (s.BirthDate >= inicial && s.BirthDate <= final)
-                {
+                //if (s.BirthDate >= inicial && s.BirthDate <= final)
+                //{
                     soma += s.Sales.Count();
-                }
+                //}
             }
             return soma;
         }
