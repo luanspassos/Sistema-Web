@@ -24,11 +24,11 @@ namespace Sales_Web_MVC.Services
             _context.Add(seller);
             await _context.SaveChangesAsync();
         }
-        public async Task<Seller> FindByIdAsync(int id)
+
+        public async Task<Seller?> FindByIdAsync(int id)
         {
             return await _context.Seller.Include(_context => _context.Department).FirstOrDefaultAsync(s => s.Id == id);
         }
-
 
         public async Task RemoveAsync(int id)
         {
